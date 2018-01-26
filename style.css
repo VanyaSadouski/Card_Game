@@ -1,0 +1,20 @@
+#suit{
+    display: inline-block;
+    font-size: 40px;
+    margin: 20px;
+}
+#btn{
+    display: inline-block;
+    margin-left: 20px;
+    width: 150px;
+    height: 50px;
+}
+#count{
+    display: block;
+    margin-top: 20px;
+    margin-left: 40px;
+    font-size: 50px;
+}
+ td {
+    border: 1px solid black ;
+}
