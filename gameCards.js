@@ -5,8 +5,7 @@ let rightPlayer = [];
 let deck = [];
 let p1Count = 0;
 let p2Count = 0;
-// let player1 = prompt("Имя игрока 1?");
-// let player2 = prompt("Имя игрока 2?");
+
 
 let rand = Math.floor(Math.random() * arrSuit.length);
 let suit = document.getElementById('suit');
@@ -61,17 +60,23 @@ console.log(leftPlayer);
 
 
 let tablePlay = document.getElementById('table');
-let btn = document.getElementById('btn');
 let count = document.getElementById('count');
-btn.addEventListener('click', whoWin);
-
+document.body.addEventListener('click', whoWin);
+let trName = document.createElement('tr');
+let tdName1 = document.createElement('td');
+let tdName2 = document.createElement('td');
+tablePlay.appendChild(trName);
+tdName1.textContent = "Player 1";
+tdName2.textContent = "Player 2";
+trName.appendChild(tdName1);
+trName.appendChild(tdName2);
 function whoWin() {
     let a = rightPlayer.pop();
     let b = leftPlayer.pop();
 
     if (!rightPlayer.length) {
-        btn.removeEventListener('click', whoWin);
-        document.body.removeChild(btn);
+        document.body.removeEventListener('click', whoWin);
+
     }
     if (a.Value > b.Value) {
         p1Count++;
@@ -80,17 +85,19 @@ function whoWin() {
         p2Count++;
     }
     else {
-        console.log('ничья')
+        console.log('ничья');
     }
-
+    let tr = document.createElement('tr');
+    let td1 = document.createElement('td');
+    let td2 = document.createElement('td');
+    tablePlay.appendChild(tr);
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    let leftCard = document.createElement('IMG');
+    let rightCard = document.createElement('IMG');
+    leftCard.src = a.Images;
+    rightCard.src = b.Images;
+    td1.appendChild(leftCard);
+    td2.appendChild(rightCard);
     count.innerHTML = p1Count + ' : ' + p2Count;
-    createT(a, b, tablePlay);
-}
-
-function createT(a, b, table) {
-    let html = '';
-    a.Images = new Image();
-    // html += '<tr><td>' + player1 + '</td><td>' + player2 + '</td></tr>';
-    html += '<tr><td>' + '<img src=" ' + a.Images + '">' + '</td><td>' + '<img src=" ' + b.Images + '">' + '</td></tr>';
-    table.innerHTML = html;
 }
